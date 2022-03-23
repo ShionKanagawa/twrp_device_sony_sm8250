@@ -16,7 +16,7 @@
 
 
 cc_library {
-    name: "libgptutils.edo",
+    name: "libgptutils.sony_sm8250",
     vendor: true,
     recovery_available: true,
     shared_libs: [
@@ -27,13 +27,15 @@ cc_library {
     cflags: [
         "-Wall",
         "-Werror",
+        "-Wno-unused-parameter",
     ],
     srcs: [
         "gpt-utils.cpp",
+        "recovery-ufs-bsg.cpp",
     ],
     owner: "qti",
     header_libs: [
-        "generated_kernel_headers",
+        "device_kernel_headers",
     ],
     export_include_dirs: ["."],
 }
