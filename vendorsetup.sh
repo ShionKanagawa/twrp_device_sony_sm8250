@@ -5,6 +5,8 @@ export TARGET_ARCH="arm64-v8a"
 export FOX_VERSION="R12.1"
 export OF_MAINTAINER=ShionKagurazaka
 
+# Screen
+export OF_SCREEN_H=2520
 # Build environment stuffs
 export FOX_BUILD_DEVICE="pdx203"
 export ALLOW_MISSING_DEPENDENCIES=true
