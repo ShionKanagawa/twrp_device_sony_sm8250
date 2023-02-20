@@ -38,12 +38,18 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
+# Boot HAL
 PRODUCT_PACKAGES += \
     bootctrl.sony_sm8250 \
     bootctrl.sony_sm8250.recovery \
     android.hardware.boot@1.0-service \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-impl.recovery \
+    fastbootd
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
     fastbootd
 
 # SHIPPING API
