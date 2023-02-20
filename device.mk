@@ -13,6 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# Configure base.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+
+# Configure core_64_bit_only.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+
+# Configure gsi_keys.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+# Configure Virtual A/B
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Configure twrp
+$(call inherit-product, vendor/twrp/config/common.mk)
+
 # A/B support
 AB_OTA_UPDATER := true
 
@@ -29,8 +45,14 @@ PRODUCT_PACKAGES += \
     otapreopt_script \
     update_engine \
     update_engine_sideload \
-    update_verifier
+    update_verifier \
+    checkpoint_gc
 
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=ext4 \
+    POSTINSTALL_OPTIONAL_vendor=true
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -48,9 +70,13 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 29
-# VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 30
+PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Props for a Successful Casefold Format 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.volume.options=::v2 
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
