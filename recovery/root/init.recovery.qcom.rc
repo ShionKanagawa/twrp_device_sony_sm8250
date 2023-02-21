@@ -48,6 +48,7 @@ on init
 on boot
     start health-hal-2-1
     setprop sys.usb.config adb
+    start vendor.qti.vibrator
     chmod 0777 /system/bin/unified-script.sh
     start unified-script
 
@@ -78,4 +79,10 @@ service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qt
     user root
     group root
     disabled
+    seclabel u:r:recovery:s0
+
+service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
+    class hal
+    user system
+    group system input
     seclabel u:r:recovery:s0
