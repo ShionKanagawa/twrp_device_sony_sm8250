@@ -17,7 +17,7 @@
 
 # Persistent Firmware & Properties
 /persist                   ext4                /dev/block/bootdevice/by-name/persist                  flags=display="persist"
-/persist_image             emmc                /dev/block/bootdevice/by-name/persist                  flags=display="persist";flashimg=1;backup=0;advbackup=1
+/persist_image             emmc                /dev/block/bootdevice/by-name/persist                  flags=display="persist";flashimg=1;backup=1
 
 # Sony partitions
 /oem                       emmc                /dev/block/bootdevice/by-name/oem                      flags=display="oem";backup=1;flashimg=1
@@ -27,11 +27,11 @@
 # Firmware partitions
 /modem                     ext4                /dev/block/bootdevice/by-name/modem                    flags=display="modem";fsflags="ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait";slotselect
 /dsp                       ext4                /dev/block/bootdevice/by-name/dsp                      flags=display="dsp";slotselect
-/dsp_image                 emmc                /dev/block/bootdevice/by-name/dsp                      flags=display="dsp";backup=0;advbackup=1;flashimg=1;slotselect
+/dsp_image                 emmc                /dev/block/bootdevice/by-name/dsp                      flags=display="dsp";backup=1;flashimg=1;slotselect
 /bluetooth                 vfat                /dev/block/bootdevice/by-name/bluetooth                flags=display="bluetooth";fsflags="ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait"
-/bluetooth_image           emmc                /dev/block/bootdevice/by-name/bluetooth                flags=display="bluetooth";backup=0;advbackup=1;flashimg=1;slotselect
-/devcfg                    emmc                /dev/block/bootdevice/by-name/devcfg                   flags=display="devcfg";backup=0;advbackup=1;flashimg=1;slotselect
-/spunvm                    vfat                /dev/block/bootdevice/by-name/spunvm                   flags=display="spunvm";backup=0;advbackup=1;fsflags="rw,noatime,shortname=lower,uid=1000,gid=1000,dmask=007,fmask=007,context=u:object_r:spunvm_file:s0 wait"
+/bluetooth_image           emmc                /dev/block/bootdevice/by-name/bluetooth                flags=display="bluetooth";backup=1;flashimg=1;slotselect
+/devcfg                    emmc                /dev/block/bootdevice/by-name/devcfg                   flags=display="devcfg";backup=1;flashimg=1;slotselect
+/spunvm                    vfat                /dev/block/bootdevice/by-name/spunvm                   flags=display="spunvm";backup=1;fsflags="rw,noatime,shortname=lower,uid=1000,gid=1000,dmask=007,fmask=007,context=u:object_r:spunvm_file:s0 wait"
 
 # Removable storage
 /sdcard1                   auto               /dev/block/mmcblk0p1         /dev/block/mmcblk0        flags=fsflags=utf8;display="MicroSD";storage;wipeingui;removable
